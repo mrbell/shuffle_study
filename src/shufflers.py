@@ -1,5 +1,3 @@
-from random import random
-from tkinter import N
 import numpy as np
 
 
