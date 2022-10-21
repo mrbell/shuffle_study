@@ -1,6 +1,35 @@
 import numpy as np
 
 
+def simulate_shuffling(starting_deck, shuffler_class, n_sims=10000, n_shuffles=30, marked_card=0, **shuffler_kwargs):
+    """
+    Given a deck and a shuffling method, shuffle the deck N_SHUFFLES times. Record the results of shuffling
+    over N_SIMS simulations.
+    """
+
+    distances = {i+1: [] for i in range(n_shuffles)}
+    
+    for i in range(n_sims):
+        deck = np.array(starting_deck)
+        shuffler = shuffler_class(**shuffler_kwargs)
+        for j in range(n_shuffles):
+            shuffled_deck = shuffler.shuffle(deck)
+            deck = shuffled_deck
+            
+            i0 = np.where(shuffled_deck==marked_card)[0][0]
+            i1 = np.where(shuffled_deck==(marked_card + 1))[0][0]
+            dist = abs(i1-i0)
+            distances[j+1].append(dist)
+            
+
+    return distances
+
+
+class CutShuffler(object):
+    def shuffle(self, deck):
+        return cut_shuffler(deck)
+
+
 class IdealShuffler(object):
     def shuffle(self, deck):
         return ideal_shuffler(deck) 
