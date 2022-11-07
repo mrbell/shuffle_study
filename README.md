@@ -1,0 +1,1 @@
+Analyzing different methods of shuffling to figure out which approach is better and how many shuffles you need to properly distribute cards in a deck. I could read all about this elsewhere I'm sure, but it seemed like more fun to figure it out.
